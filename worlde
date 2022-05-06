@@ -1,0 +1,20 @@
+from re import X
+
+
+def main():
+    palabras()
+
+def palabras():
+    diccionario = []
+    cantidad_de_palabras = 0
+    listado = open("LISTADO PALABRAS.txt", mode= "r")
+    for item in listado:
+        if len(item) == 6:
+            diccionario.append(item)
+            cantidad_de_palabras += 1
+    print("La cantidad de palabras es {}" .format(cantidad_de_palabras))
+
+
+
+if __name__ == "__main__":
+    main()
