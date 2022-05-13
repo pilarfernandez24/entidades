@@ -1,0 +1,33 @@
+from re import X
+import random
+
+def palabras():
+    diccionario = []
+    cantidad_de_palabras = 0
+    listado = open("LISTADO PALABRAS.txt", mode= "r")
+    for item in listado:
+        if len(item) == 6:
+            diccionario.append(item.strip("\n"))
+            cantidad_de_palabras += 1
+    print("La cantidad de palabras es {}" .format(cantidad_de_palabras))
+    
+
+def eleccion(diccionario):
+    palabra_elegida = random.choice(diccionario)
+    print(palabra_elegida)
+
+
+def elejir_palabra(diccionario):
+    a = input("introduzca una palabra:  ")
+    while a not in diccionario:
+        if len(a) != 5: 
+            print("error! introduzca una nueva palabra:  ")
+        if a not in listado:
+            print("error! introduzca una nueva palabra:  ")
+        if not a.isalpha:
+            print("error! introduzca una nueva palabra:  ")
+        a = input("introduzca una palabra:  ")
+    
+    
+if __name__ == "__main__":
+    palabras()
