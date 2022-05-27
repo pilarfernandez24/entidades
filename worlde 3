@@ -1,74 +1,48 @@
-from re import X
 import random
 import colorama
 from colorama import Fore, Style
 
 if __name__ == "__main__":
-    diccionario = []
-    cantidad_de_palabras = 0
-    listado = open("LISTADO PALABRAS.txt", mode= "r")
-    for item in listado:
-        if len(item) == 6:
-            diccionario.append(item.strip("\n"))
-            cantidad_de_palabras += 1
-    print("La cantidad de palabras es {}" .format(cantidad_de_palabras))
+   diccionario = []
+   cantidad_de_palabras = 0
+   listado = open("LISTADO PALABRAS.txt", mode="r")
+   for item in listado:
+       if len(item) == 6:
+           diccionario.append(item.upper().strip("\n"))
+           cantidad_de_palabras += 1
+   print("La cantidad de palabras es {}".format(cantidad_de_palabras))
 
+   palabra_elegida = random.choice(diccionario)
+   print(palabra_elegida)
+   print(diccionario)
 
-    palabra_elegida = random.choice(diccionario)
-    print(palabra_elegida)
+   intentos = 0
+   while intentos != 5:
+       a = input("introduzca una palabra: ").upper()
+       while a not in diccionario:
+           if len(a) != 5:
+               print("error! La palabra no tiene 5 letras  ")
+           if a not in listado:
+               print("error! La palabra no esta en el diccionario  ")
+           if not a.isalpha:
+               print("error! La palabra contiene caracteres que no son letras  ")
+           a = input("introduzca una palabra:  ").upper()
 
-    intentos = 0
-    while intentos != 5:
-        a = input("introduzca una palabra:  ").lower
-        while a not in diccionario:
-            if len(a) != 5: 
-                print("error! La palabra no tiene 5 letras  ")
-            if a not in listado:
-                print("error! La palabra no esta en el diccionario  ")
-            if not a.isalpha:
-                print("error! La palabra contiene caracteres que no son letras  ")
-            a = input("introduzca una palabra:  ").lower
+       for i in range(0, 5):
+           if a[i] == palabra_elegida[i]:
+               print(Fore.GREEN + a[i] + Style.RESET_ALL)
+           elif a[i] in palabra_elegida:
+               print(Fore.YELLOW + a[i] + Style.RESET_ALL)
+           elif a[i] not in palabra_elegida:
+               print(Fore.LIGHTBLACK_EX + a[i] + Style.RESET_ALL)
 
-        #a[0]
-        if a[0] == palabra_elegida[0]:
-            print(Fore.GREEN + a[0] + Style.RESET_ALL) 
-        elif a[0] in palabra_elegida:
-            print(Fore.YELLOW + a[0] + Style.RESET_ALL) 
-        elif a[0] not in palabra_elegida:
-            print(Fore.LIGHTBLACK_EX + a[0] + Style.RESET_ALL) 
-        #a[1]
-        if a[1] == palabra_elegida[1]:
-            print(Fore.GREEN + a[1] + Style.RESET_ALL) 
-        elif a[1] in palabra_elegida:
-            print(Fore.YELLOW + a[1] + Style.RESET_ALL) 
-        elif a[1] not in palabra_elegida:
-            print(Fore.LIGHTBLACK_EX + a[1] + Style.RESET_ALL) 
-       #a[2]
-        if a[2] == palabra_elegida[2]:
-            print(Fore.GREEN + a[2] + Style.RESET_ALL) 
-        elif a[2] in palabra_elegida:
-            print(Fore.YELLOW + a[2] + Style.RESET_ALL) 
-        elif a[2] not in palabra_elegida:
-            print(Fore.LIGHTBLACK_EX + a[2] + Style.RESET_ALL) 
-        #a[3]
-        if a[3] == palabra_elegida[3]:
-            print(Fore.GREEN + a[3] + Style.RESET_ALL) 
-        elif a[3] in palabra_elegida:
-            print(Fore.YELLOW + a[3] + Style.RESET_ALL) 
-        elif a[3] not in palabra_elegida:
-            print(Fore.LIGHTBLACK_EX + a[3] + Style.RESET_ALL) 
-        #a[4]
-        if a[4] == palabra_elegida[4]:
-            print(Fore.GREEN + a[4] + Style.RESET_ALL) 
-        elif a[4] in palabra_elegida:
-            print(Fore.YELLOW + a[4] + Style.RESET_ALL) 
-        elif a[4] not in palabra_elegida:
-            print(Fore.LIGHTBLACK_EX + a[4] + Style.RESET_ALL) 
-    
-        intentos += 1
-        if a == palabra_elegida:
-            break
-    if a != palabra_elegida:
-        print("perdiste!")
-    else:
-        print("ganaste")
+       intentos += 1
+
+       if a == palabra_elegida:
+           break
+
+   if a != palabra_elegida:
+       print("perdiste!")
+   else:
+       print("ganaste")
+
